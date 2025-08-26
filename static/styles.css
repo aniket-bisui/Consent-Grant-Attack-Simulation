@@ -1,0 +1,162 @@
+/* -------------------------------
+   Root Colors — Attacker Theme
+--------------------------------*/
+:root {
+  --bg: #0a0f18;           /* dark background */
+  --panel: #131820;        /* card/panel background */
+  --border: #252a36;       /* subtle borders */
+  --text: #e6e8ef;         /* main text */
+  --muted: #8a95b1;        /* muted gray-blue */
+  --accent: #d90429;       /* blood red highlight */
+  --accent-2: #21ff21;     /* neon green highlight */
+  --warning: #ffcc00;      /* alert yellow */
+}
+
+/* -------------------------------
+   Global
+--------------------------------*/
+* { box-sizing: border-box; }
+html, body { height: 100%; margin: 0; }
+
+body {
+  font-family: "Fira Code", "Source Code Pro", monospace;
+  background: linear-gradient(180deg, var(--bg), #0c1220 70%, #090d15);
+  color: var(--text);
+  line-height: 1.6;
+}
+
+/* -------------------------------
+   Navbar
+--------------------------------*/
+.nav {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 14px 20px;
+  border-bottom: 1px solid var(--border);
+  background: rgba(19, 24, 32, 0.95);
+  position: sticky; top: 0; z-index: 100;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 0 12px rgba(217, 4, 41, 0.5);
+}
+.brand {
+  font-weight: 800;
+  letter-spacing: 1px;
+  color: var(--accent);
+  text-shadow: 0 0 8px var(--accent);
+}
+.nav a {
+  margin-left: 12px;
+  text-decoration: none;
+  color: var(--muted);
+  transition: color .2s ease, text-shadow .2s ease;
+}
+.nav a:hover {
+  color: var(--accent-2);
+  text-shadow: 0 0 6px var(--accent-2);
+}
+
+/* -------------------------------
+   Buttons
+--------------------------------*/
+.btn, .btn-outline, .cta {
+  padding: 10px 16px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  font-weight: 600;
+  font-family: "Fira Code", monospace;
+  transition: transform .08s ease, background .2s ease, border-color .2s ease, box-shadow .2s ease;
+}
+
+.btn {
+  background: var(--accent);
+  color: #fff;
+  border-color: transparent;
+}
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 10px var(--accent);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--text);
+}
+.btn-outline:hover {
+  border-color: var(--accent-2);
+  color: var(--accent-2);
+  transform: translateY(-2px);
+  text-shadow: 0 0 6px var(--accent-2);
+}
+
+.cta {
+  display: inline-block;
+  margin-top: 12px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  color: #0a0f18;
+  font-weight: bold;
+  border: none;
+  box-shadow: 0 0 10px rgba(33, 255, 33, 0.6);
+}
+.cta:hover {
+  transform: translateY(-2px) scale(1.02);
+}
+
+/* -------------------------------
+   Layout & Components
+--------------------------------*/
+.container { max-width: 1000px; margin: 30px auto; padding: 0 16px; }
+
+.hero {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 28px;
+  box-shadow: 0 0 15px rgba(217, 4, 41, 0.3);
+}
+.hero h1 {
+  margin-top: 0;
+  color: var(--accent);
+  text-transform: uppercase;
+  text-shadow: 0 0 10px var(--accent);
+}
+.bullets { color: var(--muted); }
+
+.footer {
+  text-align: center;
+  color: var(--muted);
+  padding: 24px 0;
+  border-top: 1px solid var(--border);
+  font-size: 0.9rem;
+}
+
+/* -------------------------------
+   Grid & Cards
+--------------------------------*/
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+}
+.card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px;
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0 20px rgba(33, 255, 33, 0.4);
+}
+
+/* -------------------------------
+   Code Blocks
+--------------------------------*/
+pre {
+  background: #0a1427;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px;
+  color: var(--accent-2);
+  font-family: "Fira Code", monospace;
+  text-shadow: 0 0 6px rgba(33, 255, 33, 0.8);
+}

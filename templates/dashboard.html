@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Dashboard — Consent Grant Simulation</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="/static/styles.css" rel="stylesheet" />
+  <style>
+    /* --- Fix for long text overflow in cards --- */
+    pre {
+      white-space: pre-wrap;       /* allow wrapping */
+      word-break: break-all;       /* break long strings */
+      overflow-wrap: anywhere;     /* modern wrapping */
+      max-width: 100%;             /* keep inside card */
+      overflow-x: auto;            /* if still too long, enable scroll */
+    }
+  </style>
+</head>
+<body>
+  <header class="nav">
+    <div class="brand">Consent Grant Simulation</div>
+    <nav>
+      <a class="btn-outline" href="/">Home</a>
+      <a class="btn" href="{{ url_for('logout') }}">Log out</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <h2>Welcome, {{ user.displayName }}!</h2>
+    <p>Email: {{ user.mail or user.userPrincipalName }}</p>
+    <p><small>Data fetched at: {{ now }}</small></p>
+
+    <!-- 🔄 Refresh Button -->
+    <form action="{{ url_for('refresh_token') }}" method="get" style="margin-bottom: 1rem;">
+      <button class="btn" type="submit">🔄 Refresh Access Token</button>
+    </form>
+
+    <div class="grid">
+      <!-- Profile Card -->
+      <div class="card">
+        <h3>🧑 Profile (/me)</h3>
+        {% if user %}
+          <pre>{{ user | tojson(indent=2) }}</pre>
+        {% else %}
+          <p>Unable to load profile data.</p>
+        {% endif %}
+      </div>
+
+      <!-- Granted Scopes Card -->
+      <div class="card">
+        <h3>🔐 Granted Scopes</h3>
+        <ul>
+          <li><code>User.Read</code></li>                               
+          <li><code>User.ReadBasic.All</code></li>
+          <li><code>Contacts.Read</code></li>
+          <li><code>Notes.Read.All</code></li>
+          <li><code>Mail.Read</code></li>
+          <li><code>Mail.Send</code></li>
+          <li><code>MailboxSettings.ReadWrite</code></li>
+          <li><code>offline_access</code></li>
+        </ul>
+        <p>Use PowerShell to inventory &amp; revoke the delegated grant.</p>
+      </div>
+
+      <!-- Token Display Card -->
+      <div class="card">
+        <h3>🔑 OAuth Tokens</h3>
+        <p><strong>Access Token:</strong></p>
+        <pre>{{ access_token }}</pre>
+
+        <p><strong>Refresh Token:</strong></p>
+        <pre>{{ refresh_token }}</pre>
+      </div>
+    </div>
+  </main>
+</body>
+</html>

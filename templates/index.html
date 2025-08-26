@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Consent Grant Attack Simulation</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="/static/styles.css" rel="stylesheet" />
+  <style>
+    .footer-warning {
+      text-align: center;
+      margin-top: 2rem;
+      font-size: 0.9rem;
+      color: #ff2e63;                /* neon red */
+      text-shadow: 0 0 8px #ff2e63, 0 0 12px #ff004f;
+      font-family: 'Courier New', monospace;
+      letter-spacing: 0.5px;
+    }
+  </style>
+</head>
+<body>
+  <header class="nav">
+    <div class="brand">Consent Grant Simulation</div>
+    <nav>
+      {% if logged_in %}
+      <a class="btn" href="/dashboard">Dashboard</a>
+      <a class="btn-outline" href="/logout">Log out</a>
+      {% else %}
+      <a class="btn" href="/login">Sign in with Microsoft</a>
+      {% endif %}
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <h1>⚠️ Microsoft Entra ID — Consent Grant Attack Simulation</h1>
+      <p>
+        This project demonstrates how a malicious application can abuse the OAuth consent process 
+        to gain delegated access to Microsoft Graph APIs and obtain sensitive tokens.
+      </p>
+      <ul class="bullets">
+        <li>Simulates an <strong>illicit consent grant attack</strong></li>
+        <li>Displays your <strong>profile, granted scopes, and OAuth tokens</strong></li>
+        <li>Helps understand <em>detection and remediation</em> strategies</li>
+      </ul>
+      {% if not logged_in %}
+      <a class="cta" href="/login">Sign in &amp; Grant Consent</a>
+      {% else %}
+      <a class="cta" href="/dashboard">Go to Dashboard</a>
+      {% endif %}
+    </section>
+  </main>
+
+  <footer>
+    <p class="footer-warning">
+      ⚠️ Educational use only — this simulation demonstrates how attackers exploit consent grants. 
+      Do not use on production tenants.
+    </p>
+  </footer>
+</body>
+</html>
